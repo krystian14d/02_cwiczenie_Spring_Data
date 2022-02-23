@@ -1,10 +1,12 @@
 package pl.javastart.devicerent.dao;
 
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import pl.javastart.devicerent.model.Customer;
 
 import javax.persistence.EntityManager;
 
+@Repository
 public class CustomerRepository {
 
     private final EntityManager entityManager;

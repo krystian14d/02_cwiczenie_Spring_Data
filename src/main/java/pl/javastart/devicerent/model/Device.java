@@ -18,10 +18,10 @@ public class Device {
     private int quantity;
     private double price;
     //Device owner of the relationship, so here we put @JoinColumn annotation
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "category_id", unique = true)
     private Category category;
-    @ManyToMany
+    @ManyToMany(cascade = CascadeType.PERSIST)
     @JoinTable(name = "device_customers",
             joinColumns = @JoinColumn(name = "device_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "customer_id", referencedColumnName = "id"))
@@ -83,7 +83,7 @@ public class Device {
         this.customers = customers;
     }
 
-    public void addCustomer(Customer customer){
+    public void addCustomer(Customer customer) {
         customers.add(customer);
         customer.getRentDevices().add(this);
     }
