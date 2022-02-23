@@ -83,6 +83,11 @@ public class Device {
         this.customers = customers;
     }
 
+    public void addCustomer(Customer customer){
+        customers.add(customer);
+        customer.getRentDevices().add(this);
+    }
+
     @Override
     public String toString() {
         return "Urządzenie{" +

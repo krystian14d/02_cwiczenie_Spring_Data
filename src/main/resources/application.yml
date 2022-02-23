@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/devicrent?useSSL=false
+    username: root
+    password: admin
+  jpa:
+    show-sql: true
+    generate-ddl: true
