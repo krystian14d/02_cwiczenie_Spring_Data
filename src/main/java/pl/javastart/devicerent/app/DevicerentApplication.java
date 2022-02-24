@@ -3,7 +3,7 @@ package pl.javastart.devicerent.app;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import pl.javastart.devicerent.dao.DeviceRepository;
+import pl.javastart.devicerent.repository.DeviceRepository;
 import pl.javastart.devicerent.model.Category;
 import pl.javastart.devicerent.model.Customer;
 import pl.javastart.devicerent.model.Device;
@@ -36,5 +36,4 @@ public class DevicerentApplication {
 
         deviceRepository.save(device);
     }
-
 }
