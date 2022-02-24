@@ -1,4 +1,6 @@
-package pl.javastart.devicerent.model;
+package pl.javastart.devicerent.customer;
+
+import pl.javastart.devicerent.device.Device;
 
 import javax.persistence.*;
 import java.util.ArrayList;
