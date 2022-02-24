@@ -3,10 +3,10 @@ package pl.javastart.devicerent;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.ConfigurableApplicationContext;
-import pl.javastart.devicerent.device.DeviceRepository;
-import pl.javastart.devicerent.category.Category;
-import pl.javastart.devicerent.customer.Customer;
-import pl.javastart.devicerent.device.Device;
+import pl.javastart.devicerent.components.device.DeviceRepository;
+import pl.javastart.devicerent.components.category.Category;
+import pl.javastart.devicerent.components.customer.Customer;
+import pl.javastart.devicerent.components.device.Device;
 
 @SpringBootApplication
 public class DevicerentApplication {

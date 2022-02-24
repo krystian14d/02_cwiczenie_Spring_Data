@@ -1,6 +1,6 @@
-package pl.javastart.devicerent.category;
+package pl.javastart.devicerent.components.category;
 
-import pl.javastart.devicerent.device.Device;
+import pl.javastart.devicerent.components.device.Device;
 
 import javax.persistence.*;
 import java.util.HashSet;

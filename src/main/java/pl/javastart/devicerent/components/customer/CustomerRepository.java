@@ -1,4 +1,4 @@
-package pl.javastart.devicerent.customer;
+package pl.javastart.devicerent.components.customer;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
