@@ -9,7 +9,7 @@ import java.util.logging.Logger;
 public class ConsoleLogger {
     private static final Logger logger = Logger.getLogger(ConsoleLogger.class.getName());
 
-    void logInfo(String text){
+    public void logInfo(String text){
         logger.log(Level.INFO, text);
     }
 }
