@@ -11,10 +11,10 @@ import java.util.Scanner;
 @Controller
 public class CustomerController {
     private Scanner scanner;
-    private CategoryRepository customerRepository;
+    private CustomerRepository customerRepository;
     private ConsoleLogger logger;
 
-    public CustomerController(Scanner scanner, CategoryRepository customerRepository, ConsoleLogger logger) {
+    public CustomerController(Scanner scanner, CustomerRepository customerRepository, ConsoleLogger logger) {
         this.scanner = scanner;
         this.customerRepository = customerRepository;
         this.logger = logger;
@@ -22,6 +22,7 @@ public class CustomerController {
 
     public void createCustomer() {
         Customer customer = readCustomer();
+        customerRepository.save(customer);
         logger.logInfo("Utworzono nowego klienta:");
         customer.toString();
     }
@@ -29,7 +30,7 @@ public class CustomerController {
     public void removeCustomer() {
         logger.logInfo("Podaj ID klienta którego chcesz usunąć:");
         long customerId = scanner.nextLong();
-        Optional<Category> customer = customerRepository.findById(customerId);
+        Optional<Customer> customer = customerRepository.findById(customerId);
         customer.ifPresentOrElse(customerRepository::delete, () -> logger.logInfo("Nie znaleziono klienta o podanym ID."));
     }
 
