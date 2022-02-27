@@ -1,9 +1,36 @@
 package pl.javastart.devicerent.app;
 
-import pl.javastart.devicerent.components.category.CategoryRepository;
+enum Options {
 
-import java.util.Scanner;
+    ADD_DEVICE(1, "Dodaj urządzenie"),
+    ADD_CATEGORY(2, "Dodaj kategorię"),
+    ADD_CUSTOMER(3, "Dodaj klienta"),
+    RENT(4, "Wypożycz urządzenie"),
+    REMOVE_DEVICE(5, "Usuń urządzenie"),
+    REMOVE_CATEGORY(6, "Usuń kategorię"),
+    REMOVE_CUSTOMER(7, "Usuń klienta"),
+    END(8, "Koniec");
 
-public enum Options {
+    private int number;
+    private String description;
+
+    Options(int number, String description) {
+        this.number = number;
+        this.description = description;
+    }
+
+    @Override
+    public String toString() {
+        return number + " - " + description;
+    }
+
+    static Options numberToCategory(int number) {
+        if (number < 1 || number > Options.values().length)
+            throw new InvalidOptionException();
+        return values()[number - 1];
+
+    }
+
+    //metoda numberToCategory - zamiana liczby na kategorię
 
 }
