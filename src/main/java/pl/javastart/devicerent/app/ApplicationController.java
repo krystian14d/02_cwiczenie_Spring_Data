@@ -44,6 +44,7 @@ public class ApplicationController {
             case ADD_CATEGORY -> categoryController.createCategory();
             case ADD_CUSTOMER -> customerController.createCustomer();
             case RENT -> rentController.rentDeviceToCustomer();
+            case SEARCH_DEVICE -> deviceController.searchDevice();
             case REMOVE_DEVICE -> deviceController.removeDevice();
             case REMOVE_CATEGORY -> categoryController.removeCategory();
             case REMOVE_CUSTOMER -> customerController.removeCustomer();

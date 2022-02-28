@@ -1,5 +1,6 @@
 package pl.javastart.devicerent.components.category;
 
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import pl.javastart.devicerent.app.ConsoleLogger;
 
@@ -21,9 +22,13 @@ public class CategoryController {
 
     public void createCategory() {
         Category category = readCategory();
-        categoryRepository.save(category);
-        logger.logInfo("Dodano kategorię");
-        category.toString();
+        try {
+            categoryRepository.save(category);
+            logger.logInfo("Dodano kategorię:");
+            category.toString();
+        } catch (DataIntegrityViolationException e) {
+            logger.logErr("Nie dodano kategorii, możliwe że nazwa jest duplikatem.");
+        }
     }
 
     public void removeCategory() {

@@ -5,6 +5,7 @@ import pl.javastart.devicerent.app.ConsoleLogger;
 import pl.javastart.devicerent.components.category.Category;
 import pl.javastart.devicerent.components.category.CategoryRepository;
 
+import java.util.List;
 import java.util.Optional;
 import java.util.Scanner;
 
@@ -33,6 +34,18 @@ public class DeviceController {
         }
     }
 
+    public void searchDevice() {
+        logger.logInfo("Podaj nazwę urządzenia:");
+        String name = scanner.nextLine();
+        List<Device> devices = deviceRepository.findAllByNameContainingIgnoreCase(name);
+        if (devices.isEmpty()) {
+            logger.logInfo("Nie znaleziono urządzeń o podanej nazwie");
+        } else {
+            logger.logInfo("Znalezione urządzenia:");
+            devices.forEach(device -> logger.logInfo(device.toString()));
+        }
+    }
+
     public void removeDevice() {
         logger.logInfo("Podaj ID urządzenia które chcesz usunąć:");
         long deviceId = scanner.nextLong();
@@ -53,13 +66,12 @@ public class DeviceController {
         logger.logInfo("Podaj ilość urządzeń:");
         device.setQuantity(scanner.nextInt());
         scanner.nextLine();
-        logger.logInfo("Podaj ID kategorii dla urządzenia:");
-        long categoryId = scanner.nextLong();
-        scanner.nextLine();
-        Optional<Category> foundCategory = categoryRepository.findById(categoryId);
+        logger.logInfo("Podaj nazwę kategorii dla urządzenia:");
+        String categoryName = scanner.nextLine();
+        Optional<Category> foundCategory = categoryRepository.findByNameIgnoreCase(categoryName);
         foundCategory.ifPresentOrElse(device::setCategory,
                 () -> {
-                    throw new CategoryNotFoundException("Kategoria o podanym ID nie istnieje");
+                    throw new CategoryNotFoundException("Kategoria o podanej nie istnieje");
                 }
         );
         return device;

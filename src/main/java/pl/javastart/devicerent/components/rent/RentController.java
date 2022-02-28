@@ -24,18 +24,17 @@ public class RentController {
         this.logger = logger;
     }
 
-    public void rentDeviceToCustomer(){
-        try{
+    public void rentDeviceToCustomer() {
+        try {
             rent();
-        }catch (RentException e){
+        } catch (RentException e) {
             logger.logErr(e.getMessage());
         }
     }
 
     private void rent() {
-        logger.logInfo("Podaj ID klienta:");
-        Optional<Customer> customer = customerRepository.findById(scanner.nextLong());
-        scanner.nextLine();
+        logger.logInfo("Podaj PESEL klienta:");
+        Optional<Customer> customer = customerRepository.findByPesel(scanner.nextLine());
         logger.logInfo("Podaj ID urządzenia:");
         Optional<Device> device = deviceRepository.findById(scanner.nextLong());
         if (customer.isPresent())
@@ -48,6 +47,6 @@ public class RentController {
                 throw new RentException("Brak urządzenia o wskazanym ID");
             });
         else
-            throw new RentException("Brak klienta o wskazanym ID");
+            throw new RentException("Brak klienta o wskazanym nr PESEL");
     }
 }

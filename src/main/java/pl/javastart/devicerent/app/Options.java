@@ -6,10 +6,11 @@ enum Options {
     ADD_CATEGORY(2, "Dodaj kategorię"),
     ADD_CUSTOMER(3, "Dodaj klienta"),
     RENT(4, "Wypożycz urządzenie"),
-    REMOVE_DEVICE(5, "Usuń urządzenie"),
-    REMOVE_CATEGORY(6, "Usuń kategorię"),
-    REMOVE_CUSTOMER(7, "Usuń klienta"),
-    END(8, "Koniec");
+    SEARCH_DEVICE(5, "Wyszukaj urządzenie"),
+    REMOVE_DEVICE(6, "Usuń urządzenie"),
+    REMOVE_CATEGORY(7, "Usuń kategorię"),
+    REMOVE_CUSTOMER(8, "Usuń klienta"),
+    END(9, "Koniec");
 
     private int number;
     private String description;
