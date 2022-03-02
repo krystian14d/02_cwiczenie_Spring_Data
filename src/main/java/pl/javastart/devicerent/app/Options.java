@@ -1,5 +1,8 @@
 package pl.javastart.devicerent.app;
 
+import lombok.AllArgsConstructor;
+
+@AllArgsConstructor
 enum Options {
 
     ADD_DEVICE(1, "Dodaj urządzenie"),
@@ -15,11 +18,6 @@ enum Options {
     private int number;
     private String description;
 
-    Options(int number, String description) {
-        this.number = number;
-        this.description = description;
-    }
-
     @Override
     public String toString() {
         return number + " - " + description;
@@ -29,9 +27,5 @@ enum Options {
         if (number < 1 || number > Options.values().length)
             throw new InvalidOptionException();
         return values()[number - 1];
-
     }
-
-    //metoda numberToCategory - zamiana liczby na kategorię
-
 }

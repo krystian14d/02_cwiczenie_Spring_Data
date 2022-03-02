@@ -1,5 +1,7 @@
 package pl.javastart.devicerent.app;
 
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import pl.javastart.devicerent.components.category.CategoryController;
 import pl.javastart.devicerent.components.customer.CustomerController;
@@ -9,32 +11,20 @@ import pl.javastart.devicerent.components.rent.RentController;
 import java.util.Arrays;
 import java.util.Scanner;
 
+@AllArgsConstructor
+@Slf4j
 @Controller
 public class ApplicationController {
+
     private Scanner scanner;
-    private ConsoleLogger logger;
     private CategoryController categoryController;
     private CustomerController customerController;
     private DeviceController deviceController;
     private RentController rentController;
 
-    public ApplicationController(Scanner scanner, ConsoleLogger logger,
-                                 CategoryController categoryController,
-                                 CustomerController customerController,
-                                 DeviceController deviceController,
-                                 RentController rentController) {
-        this.scanner = scanner;
-        this.logger = logger;
-        this.categoryController = categoryController;
-        this.customerController = customerController;
-        this.deviceController = deviceController;
-        this.rentController = rentController;
-    }
-
     public void mainLoop() {
-        Options option;
         printOptions();
-        option = readOption();
+        Options option = readOption();
         executeOption(option);
     }
 
@@ -54,27 +44,28 @@ public class ApplicationController {
 
     private void closeApp() {
         scanner.close();
-        logger.logInfo("Do zobaczenia!");
+        log.info("Do zobaczenia!");
     }
 
     private Options readOption() {
         boolean correctOptionSelected = false;
         Options option = null;
         while (!correctOptionSelected) {
-            logger.logInfo("Podaj ID opcji:");
+            log.info("Podaj ID opcji:");
             int optionId = scanner.nextInt();
+            scanner.nextLine();
             try {
                 option = Options.numberToCategory(optionId);
                 correctOptionSelected = true;
             } catch (InvalidOptionException e) {
-                logger.logErr(e.getMessage());
+                log.error(e.getMessage());
             }
         }
         return option;
     }
 
     private void printOptions() {
-        logger.logInfo("Opcje:");
-        Arrays.stream(Options.values()).forEach(opt -> logger.logInfo(opt.toString()));
+        log.info("Opcje:");
+        Arrays.stream(Options.values()).forEach(opt -> log.info(opt.toString()));
     }
 }

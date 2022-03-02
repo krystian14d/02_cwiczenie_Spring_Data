@@ -1,13 +1,18 @@
 package pl.javastart.devicerent.components.category;
 
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.Setter;
 import pl.javastart.devicerent.components.device.Device;
 
 import javax.persistence.*;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
 
+@Getter
+@Setter
 @Entity
+@EqualsAndHashCode
 @Table(name = "category")
 public class Category {
     @Id
@@ -20,38 +25,6 @@ public class Category {
     @OneToMany(mappedBy = "category")
     private Set<Device> devices = new HashSet<>();
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Set<Device> getDevices() {
-        return devices;
-    }
-
-    public void setDevices(Set<Device> devices) {
-        this.devices = devices;
-    }
-
     @Override
     public String toString() {
         return "Kategoria{" +
@@ -59,21 +32,5 @@ public class Category {
                 ", nazwa='" + name + '\'' +
                 ", opis='" + description + '\'' +
                 '}';
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (!(o instanceof Category)) return false;
-        Category category = (Category) o;
-        return Objects.equals(id, category.id) &&
-                Objects.equals(name, category.name) &&
-                Objects.equals(description, category.description) &&
-                Objects.equals(devices, category.devices);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, description, devices);
     }
 }
