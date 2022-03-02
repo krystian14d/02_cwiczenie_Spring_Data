@@ -3,6 +3,7 @@ package pl.javastart.devicerent.components.device;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import pl.javastart.devicerent.components.category.CategoryNotFoundException;
 import pl.javastart.devicerent.components.category.Category;
 import pl.javastart.devicerent.components.category.CategoryRepository;
@@ -34,7 +35,7 @@ public class DeviceController {
         log.info("Podaj nazwę urządzenia:");
         String name = scanner.nextLine();
         List<Device> devices = deviceRepository.findAllByNameContainingIgnoreCase(name);
-        if (devices.isEmpty()) {
+        if (CollectionUtils.isEmpty(devices)) {
             log.info("Nie znaleziono urządzeń o podanej nazwie");
         } else {
             log.info("Znalezione urządzenia:");
@@ -67,7 +68,7 @@ public class DeviceController {
         Optional<Category> foundCategory = categoryRepository.findByNameIgnoreCase(categoryName);
         foundCategory.ifPresentOrElse(device::setCategory,
                 () -> {
-                    throw new CategoryNotFoundException("Kategoria o podanej nie istnieje");
+                    throw new CategoryNotFoundException();
                 }
         );
         return device;

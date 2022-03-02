@@ -12,6 +12,7 @@ import java.util.Scanner;
 @Slf4j
 @Controller
 public class CategoryController {
+
     private Scanner scanner;
     private CategoryRepository categoryRepository;
 
@@ -30,7 +31,7 @@ public class CategoryController {
         log.info("Podaj ID kategorii którą chcesz usunąć:");
         long categoryId = scanner.nextLong();
         Optional<Category> category = categoryRepository.findById(categoryId);
-        category.ifPresentOrElse(categoryRepository::delete, () -> log.info("Brak podanej kategorii"));
+        category.ifPresentOrElse(categoryRepository::delete, CategoryNotFoundException::new);
 
     }
 
