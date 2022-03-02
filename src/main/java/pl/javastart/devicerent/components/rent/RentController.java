@@ -5,8 +5,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import pl.javastart.devicerent.components.customer.Customer;
 import pl.javastart.devicerent.components.customer.CustomerRepository;
-import pl.javastart.devicerent.components.device.Device;
-import pl.javastart.devicerent.components.device.DeviceRepository;
+import pl.javastart.devicerent.components.customer.device.Device;
+import pl.javastart.devicerent.components.customer.device.DeviceRepository;
 
 import java.util.Optional;
 import java.util.Scanner;

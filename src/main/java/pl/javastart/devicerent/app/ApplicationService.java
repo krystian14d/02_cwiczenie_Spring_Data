@@ -2,10 +2,10 @@ package pl.javastart.devicerent.app;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
-import pl.javastart.devicerent.components.category.CategoryController;
+import org.springframework.stereotype.Service;
+import pl.javastart.devicerent.components.category.CategoryService;
 import pl.javastart.devicerent.components.customer.CustomerController;
-import pl.javastart.devicerent.components.device.DeviceController;
+import pl.javastart.devicerent.components.customer.device.DeviceController;
 import pl.javastart.devicerent.components.rent.RentController;
 
 import java.util.Arrays;
@@ -13,11 +13,11 @@ import java.util.Scanner;
 
 @AllArgsConstructor
 @Slf4j
-@Controller
-public class ApplicationController {
+@Service
+public class ApplicationService {
 
     private Scanner scanner;
-    private CategoryController categoryController;
+    private CategoryService categoryService;
     private CustomerController customerController;
     private DeviceController deviceController;
     private RentController rentController;
@@ -31,12 +31,12 @@ public class ApplicationController {
     private void executeOption(Options option) {
         switch (option) {
             case ADD_DEVICE -> deviceController.createDevice();
-            case ADD_CATEGORY -> categoryController.createCategory();
+            case ADD_CATEGORY -> categoryService.createCategory();
             case ADD_CUSTOMER -> customerController.createCustomer();
             case RENT -> rentController.rentDeviceToCustomer();
             case SEARCH_DEVICE -> deviceController.searchDevice();
             case REMOVE_DEVICE -> deviceController.removeDevice();
-            case REMOVE_CATEGORY -> categoryController.removeCategory();
+            case REMOVE_CATEGORY -> categoryService.removeCategory();
             case REMOVE_CUSTOMER -> customerController.removeCustomer();
             case END -> closeApp();
         }

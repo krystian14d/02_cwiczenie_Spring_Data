@@ -3,15 +3,15 @@ package pl.javastart.devicerent.components.category;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 @AllArgsConstructor
 @Slf4j
-@Controller
-public class CategoryController {
+@Service
+public class CategoryService {
 
     private Scanner scanner;
     private CategoryRepository categoryRepository;

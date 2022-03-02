@@ -3,7 +3,7 @@ package pl.javastart.devicerent.components.category;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import pl.javastart.devicerent.components.device.Device;
+import pl.javastart.devicerent.components.customer.device.Device;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
