@@ -1,11 +1,11 @@
-package pl.javastart.devicerent.components.customer.device;
+package pl.javastart.devicerent.components.device;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import org.springframework.util.CollectionUtils;
-import pl.javastart.devicerent.components.category.CategoryNotFoundException;
 import pl.javastart.devicerent.components.category.Category;
+import pl.javastart.devicerent.components.category.CategoryNotFoundException;
 import pl.javastart.devicerent.components.category.CategoryRepository;
 
 import java.util.List;
@@ -14,8 +14,8 @@ import java.util.Scanner;
 
 @Slf4j
 @AllArgsConstructor
-@Controller
-public class DeviceController {
+@Service
+public class DeviceService {
     private Scanner scanner;
     private DeviceRepository deviceRepository;
     private CategoryRepository categoryRepository;
@@ -47,12 +47,16 @@ public class DeviceController {
         log.info("Podaj ID urządzenia które chcesz usunąć:");
         long deviceId = scanner.nextLong();
         Optional<Device> deviceToRemove = deviceRepository.findById(deviceId);
-        deviceToRemove.ifPresentOrElse(deviceRepository::delete,
-                () -> log.info("Brak urządzenia o wskazanym ID."));
+        deviceToRemove.ifPresentOrElse(deviceRepository::delete, DeviceNotFoundException::new);
     }
 
     private Device readDevice() {
         Device device = new Device();
+        readDeviceDataFromUser(device);
+        return device;
+    }
+
+    private void readDeviceDataFromUser(Device device) {
         log.info("Podaj nazwę urządzenia:");
         device.setName(scanner.nextLine());
         log.info("Podaj opis urządzenia:");
@@ -66,11 +70,6 @@ public class DeviceController {
         log.info("Podaj nazwę kategorii dla urządzenia:");
         String categoryName = scanner.nextLine();
         Optional<Category> foundCategory = categoryRepository.findByNameIgnoreCase(categoryName);
-        foundCategory.ifPresentOrElse(device::setCategory,
-                () -> {
-                    throw new CategoryNotFoundException();
-                }
-        );
-        return device;
+        foundCategory.ifPresentOrElse(device::setCategory,CategoryNotFoundException::new);
     }
 }

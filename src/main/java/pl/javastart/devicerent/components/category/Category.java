@@ -3,7 +3,7 @@ package pl.javastart.devicerent.components.category;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import pl.javastart.devicerent.components.customer.device.Device;
+import pl.javastart.devicerent.components.device.Device;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -23,6 +23,7 @@ import java.util.Set;
 public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(unique = true, nullable = false)
     private Long id;
     @Column(unique = true)
     private String name;

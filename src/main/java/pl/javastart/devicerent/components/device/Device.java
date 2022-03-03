@@ -1,4 +1,4 @@
-package pl.javastart.devicerent.components.customer.device;
+package pl.javastart.devicerent.components.device;
 
 import lombok.EqualsAndHashCode;
 import lombok.Getter;

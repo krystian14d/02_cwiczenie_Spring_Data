@@ -3,10 +3,11 @@ package pl.javastart.devicerent.components.rent;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 import pl.javastart.devicerent.components.customer.Customer;
 import pl.javastart.devicerent.components.customer.CustomerRepository;
-import pl.javastart.devicerent.components.customer.device.Device;
-import pl.javastart.devicerent.components.customer.device.DeviceRepository;
+import pl.javastart.devicerent.components.device.Device;
+import pl.javastart.devicerent.components.device.DeviceRepository;
 
 import java.util.Optional;
 import java.util.Scanner;
@@ -14,8 +15,8 @@ import java.util.function.Consumer;
 
 @Slf4j
 @AllArgsConstructor
-@Controller
-public class RentController {
+@Service
+public class RentService {
     private Scanner scanner;
     private DeviceRepository deviceRepository;
     private CustomerRepository customerRepository;

@@ -4,9 +4,9 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import pl.javastart.devicerent.components.category.CategoryService;
-import pl.javastart.devicerent.components.customer.CustomerController;
-import pl.javastart.devicerent.components.customer.device.DeviceController;
-import pl.javastart.devicerent.components.rent.RentController;
+import pl.javastart.devicerent.components.customer.CustomerService;
+import pl.javastart.devicerent.components.device.DeviceService;
+import pl.javastart.devicerent.components.rent.RentService;
 
 import java.util.Arrays;
 import java.util.Scanner;
@@ -18,9 +18,9 @@ public class ApplicationService {
 
     private Scanner scanner;
     private CategoryService categoryService;
-    private CustomerController customerController;
-    private DeviceController deviceController;
-    private RentController rentController;
+    private CustomerService customerService;
+    private DeviceService deviceService;
+    private RentService rentService;
 
     public void mainLoop() {
         printOptions();
@@ -30,14 +30,14 @@ public class ApplicationService {
 
     private void executeOption(Options option) {
         switch (option) {
-            case ADD_DEVICE -> deviceController.createDevice();
+            case ADD_DEVICE -> deviceService.createDevice();
             case ADD_CATEGORY -> categoryService.createCategory();
-            case ADD_CUSTOMER -> customerController.createCustomer();
-            case RENT -> rentController.rentDeviceToCustomer();
-            case SEARCH_DEVICE -> deviceController.searchDevice();
-            case REMOVE_DEVICE -> deviceController.removeDevice();
+            case ADD_CUSTOMER -> customerService.createCustomer();
+            case RENT -> rentService.rentDeviceToCustomer();
+            case SEARCH_DEVICE -> deviceService.searchDevice();
+            case REMOVE_DEVICE -> deviceService.removeDevice();
             case REMOVE_CATEGORY -> categoryService.removeCategory();
-            case REMOVE_CUSTOMER -> customerController.removeCustomer();
+            case REMOVE_CUSTOMER -> customerService.removeCustomer();
             case END -> closeApp();
         }
     }

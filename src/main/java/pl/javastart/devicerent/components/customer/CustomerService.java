@@ -2,15 +2,15 @@ package pl.javastart.devicerent.components.customer;
 
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Service;
 
 import java.util.Optional;
 import java.util.Scanner;
 
 @AllArgsConstructor
 @Slf4j
-@Controller
-public class CustomerController {
+@Service
+public class CustomerService {
     private Scanner scanner;
     private CustomerRepository customerRepository;
 
@@ -25,7 +25,7 @@ public class CustomerController {
         log.info("Podaj ID klienta którego chcesz usunąć:");
         long customerId = scanner.nextLong();
         Optional<Customer> customer = customerRepository.findById(customerId);
-        customer.ifPresentOrElse(customerRepository::delete, () -> log.info("Nie znaleziono klienta o podanym ID."));
+        customer.ifPresentOrElse(customerRepository::delete, ClientNotFoundException::new);
     }
 
     private Customer readCustomer() {

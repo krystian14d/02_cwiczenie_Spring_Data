@@ -3,7 +3,7 @@ package pl.javastart.devicerent.components.customer;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
-import pl.javastart.devicerent.components.customer.device.Device;
+import pl.javastart.devicerent.components.device.Device;
 
 import javax.persistence.*;
 import java.util.ArrayList;
