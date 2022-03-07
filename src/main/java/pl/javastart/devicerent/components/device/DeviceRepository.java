@@ -1,9 +1,11 @@
-package pl.javastart.devicerent.device;
+package pl.javastart.devicerent.components.device;
 
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
-import pl.javastart.devicerent.device.Device;
+
+import java.util.List;
 
 @Repository
 public interface DeviceRepository extends CrudRepository<Device, Long> {
+    List<Device> findAllByNameContainingIgnoreCase(String name);
 }
